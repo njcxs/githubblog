@@ -46,5 +46,5 @@ Summary: 机器学习简介
 - Theano
 - Keras
 
-(大部分都支持GPU加速,Ubuntu + GTX 1080 TI + CUDA + cuDNN（cuDNN是为DNN设计的CPU加速库）深度学习标配环境)
+(大部分都支持GPU加速,Ubuntu + GTX 1080 TI + CUDA + cuDNN（cuDNN是为DNN设计的CPU加速库）+CNMeM(合理分配显存)+深度学习标配环境)
 
