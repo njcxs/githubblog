@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <!-- Required meta tags always come first -->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="google-site-verification" content="GgupatpoZgdqsBlxEZoMqGAy3aXAFtXIrYged3SB6EA" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>机器学习简介 | nJcx's Blog
+</title>
+  <link rel="canonical" href="http://www.njcx.bid/posts/G6.html">
+
+
+  <link rel="apple-touch-icon" href="http://www.njcx.bid/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" type="image/png" href="http://www.njcx.bid/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="http://www.njcx.bid/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="http://www.njcx.bid/manifest.json">
+  <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="http://www.njcx.bid/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://www.njcx.bid/theme/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://www.njcx.bid/theme/css/pygments/emacs.min.css">
+  <link rel="stylesheet" href="http://www.njcx.bid/theme/css/style.css">
+
+
+<meta name="description" content="机器学习简介">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a34c7a96ae9745547c373575407c521f";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4">
+          <a href="http://www.njcx.bid">
+            <img class="img-fluid" src=http://www.njcx.bid/images/profile.png width=200 height=200 alt="nJcx's Blog">
+          </a>
+        </div>
+        <div class="col-sm-8">
+          <h1 class="title">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="http://www.njcx.bid">nJcx's Blog</a></h1>
+          <p class="text-muted">身高1.85，单身，魔都，擅长Python,Golang,很重要的一件事是，单身</p>
+          <ul class="list-inline">
+                    <li class="list-inline-item">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="https://www.zhihu.com/people/njcxs" target="_blank">知乎</a></li>
+                <li class="list-inline-item"><a href="https://www.facebook.com/nJcx1" target="_blank">FaceBook</a></li>
+                <li class="list-inline-item"><a href="https://github.com/njcx" target="_blank">Github</a></li>
+            <li class=" list-inline-item text-muted">|</li>
+            <li class="list-inline-item"><a class="fa fa-github" href="https://github.com/njcx" target="_blank"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>机器学习简介
+</h1>
+      <hr>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2017-05-17T13:20:00+03:00">
+        <i class="fa fa-clock-o"></i>
+        三 17 五月 2017
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="http://www.njcx.bid/category/shu-ju-wa-jue.html">数据挖掘</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="http://www.njcx.bid/author/njcx.html">nJcx</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="http://www.njcx.bid/tag/ml.html">#ml</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <h4>介绍</h4>
+<p>人类的学习按逻辑顺序可分为三个阶段：输入，整合，输出。人类的学习是一个人根据过往的经验，对一类问题形成某种认识或总结出一定的规律，然后利用这些知识来对新的问题下判断的过程。人类学习能力强，但记性差，反应慢，还容易坏。计算机虽呆，但容量大，计算快，还稳定.这就引出我们今天的主题了，机器学习。我们对机器学习下这样一个定义了：机器学习是指用某些算法指导计算机利用已知数据得出适当的模型，并利用此模型对新的情境给出判断的过程。机器学习的思想并不复杂，它仅仅是对人类生活中学习过程的一个模拟。这整个过程中，最关键的是数据.</p>
+<h4>开始</h4>
+<p>机器学习根据所处理数据种类的不同，可以分为有监督学习，无监督学习，半监督学习和强化学习等几种类型。所谓监督学习，就是说数据样本会告诉计算机在该情形下的正确输出结果，希望计算机能够在面对没有见过的输入样本时也给出靠谱的输出结果，从而达到预测未知的目的。根据输出结果是离散值还是连续值，监督学习可以分为分类问题和回归问题两大类。回归通常用来预测一个值，如预测房价、未来的天气情况等等，回归是对真实值（Real）的一种逼近预测。分类(classification)就是将实例数据划分到合适的分类中。分类问题是用于将事物打上一个标签，通常结果为离散值。分类并没有逼近的概念，最终正确结果只有一个，错误的就是错误的，不会有相近的概念。他们在文字、语音、图像识别，垃圾邮件分类与拦截，网页检索，股票预测等方面有着广泛应用。无监督学习，是指数据样本中没有给出正确的目标变量,希望推断出数据的一些内在结构，从数据中挖掘出目标变量，常见的例子有聚类，关联规则挖掘，离群点检测等等。</p>
+<p><img alt="ml1" class="img-fluid" src="../images/ml1.png"/></p>
+<h4>AI与机器学习,深度学习</h4>
+<p><img alt="3f" class="img-fluid" src="../images/3f.jpeg"/></p>
+<h4>机器学习算法</h4>
+<ul>
+<li>
+<p>监督学习包含算法：k-邻近算法、线性回归、朴素贝叶斯算法、局部加权线性回归、支持向量机、Ridge回归、决策树、Lasso最小回归系数估计等。</p>
+</li>
+<li>
+<p>非监督学习包含算法：K-均值、最大期望算法、DBSCAN、Parzcn窗设计。</p>
+</li>
+</ul>
+<h4>机器学习框架以及相关类库</h4>
+<ul>
+<li>scikit-learn</li>
+<li>pybrain</li>
+<li>milk</li>
+<li>orange</li>
+<li>bigml</li>
+<li>pyml</li>
+<li>mllib （spark，支持java，scala，Python）</li>
+<li>weka (java)</li>
+<li>mahout (java)</li>
+</ul>
+<h4>深度学习框架以及相关类库</h4>
+<ul>
+<li>MXNet</li>
+<li>Caffe</li>
+<li>CNTK</li>
+<li>Neon</li>
+<li>TensorFlow</li>
+<li>Torch</li>
+<li>Theano</li>
+<li>Keras</li>
+</ul>
+<p>(大部分都支持GPU加速,Ubuntu + GTX 1080 TI + CUDA + cuDNN（cuDNN是为DNN设计的CPU加速库）深度学习标配环境)</p>
+  </div>
+</article>
+<div id="cyReward" role="cylabs" data-use="reward" style="text-align:center;"></div>
+<!--PC和WAP自适应版-->
+<div id="SOHUCS" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysYUIjwy'; 
+var conf = 'prod_71b5e53cad0d27b5ed44fa5219b069b5'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cysYUIjwy"></script>    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+       <ul class="col-sm-6 list-inline">
+          <li class="list-inline-item"><a href="http://www.njcx.bid/authors.html">Authors</a></li>
+          <li class="list-inline-item"><a href="http://www.njcx.bid/archives.html">Archives</a></li>
+          <li class="list-inline-item"><a href="http://www.njcx.bid/categories.html">Categories</a></li>
+          <li class="list-inline-item"><a href="http://www.njcx.bid/tags.html">Tags</a></li>
+        </ul>
+        <p class="col-sm-6 text-sm-right text-muted">
+          本站由 <a href="https://github.com/getpelican/pelican" target="_blank">Pelican 生成</a> 后续 by <a href="https://github.com/njcx" target="_blank">nJcx</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
