@@ -54,5 +54,5 @@ AI即人工智能是一个很大的学科，主要含已下内容：计算机视
 - Theano
 - Keras
 
-(上述大部分深度学习类库都支持GPU加速,Ubuntu + GTX 1080 TI + CUDA（目前9.0版，兼容性并不好） + cuDNN（cuDNN是为DNN设计的CPU加速库）+CNMeM(合理分配显存)+深度学习标配环境)
+上述大部分深度学习类库都支持GPU加速,(Ubuntu16.04 + GTX 1080 TI + CUDA（目前9.0版，兼容性并不好)+ cuDNN（cuDNN是为DNN设计的CPU加速库）+CNMeM(合理分配显存)=深度学习标配环境
 
