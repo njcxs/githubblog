@@ -106,7 +106,7 @@ var _hmt = _hmt || [];
 <p>首先，我们并不是一定要写成*args 和 **kwargs，关键是前面的* 和 **,换句话说，我们也可以*var 和　**var,这个只是大家约定熟成的方式,我们也可以换成其他的，既然，大家这样写，那么也推荐大家这样写。</p>
 <h4>开始</h4>
 <p>*args  和 **kwargs主要用于函数定义。你可以将不定数量的参数传递给一个函数。这里的不定的意思是:预先并不知道,函数使用者会传递多少个参数给你,所以在这个场景下使用这两个关键字。*args是用来发送一个非键值对的可变数量的参数列表给一个函数.这里有个例子帮你理解这个概念:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="n">args_f</span><span class="p">,</span><span class="o">*</span><span class="n">args_v</span><span class="p">):</span>
+<div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="n">args_f</span><span class="p">,</span><span class="o">*</span><span class="n">args_v</span><span class="p">):</span>
         <span class="k">print</span> <span class="n">args_f</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args_v</span><span class="p">:</span>
                 <span class="k">print</span> <span class="n">x</span>
@@ -119,7 +119,7 @@ var _hmt = _hmt || [];
 <span class="n">d</span>
 </pre></div>
 <p>**kwargs允许你将不定长度的键值对,作为参数传递给一个函数。如果你想要在一个函数里处理带名字的参数, 你应该使用**kwargs。这里有个例子帮你理解这个概念:</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="o">**</span><span class="n">args_v</span><span class="p">):</span>
+<div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="o">**</span><span class="n">args_v</span><span class="p">):</span>
    <span class="o">...</span><span class="p">:</span>         <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">args_v</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
    <span class="o">...</span><span class="p">:</span>                 <span class="k">print</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span>
    <span class="o">...</span><span class="p">:</span> 
@@ -128,7 +128,7 @@ var _hmt = _hmt || [];
 <span class="n">name</span> <span class="n">njcx</span>
 </pre></div>
 <p>我们也可以把一个已经存在的list,tuple和dict构造成*args 和 **kwargs传进函数里面，这里有个例子：</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="o">%</span><span class="n">paste</span>
+<div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">17</span><span class="p">]:</span> <span class="o">%</span><span class="n">paste</span>
 
 <span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="o">*</span><span class="n">args_f</span><span class="p">,</span><span class="o">**</span><span class="n">args_v</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args_f</span><span class="p">:</span>
@@ -154,7 +154,7 @@ var _hmt = _hmt || [];
 </pre></div>
 <p>那么函数里同时使用所有三种参数,顺序怎么样的呢？我们可以这样写 def demo(fargs,*args,**kwargs):</p>
 <p>前面我们明确指定了，*args    和 **kwargs做为函数的参数，如果，我们没有指定*args 和 **kwargs，我们定义的函数是这样的def demo(fargs,fargs1,fargs2):　我们怎么用*args  和 **kwargs把参数传到函数里面？</p>
-<div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="o">%</span><span class="n">paste</span>
+<div class="highlight"><pre><span class="n">In</span> <span class="p">[</span><span class="mi">18</span><span class="p">]:</span> <span class="o">%</span><span class="n">paste</span>
 <span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
 
 <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'arg2'</span><span class="p">:</span><span class="s1">'A'</span><span class="p">,</span><span class="s1">'arg1'</span><span class="p">:</span><span class="s1">'B'</span><span class="p">,</span><span class="s1">'arg3'</span><span class="p">:</span><span class="s1">'C'</span><span class="p">}</span>
