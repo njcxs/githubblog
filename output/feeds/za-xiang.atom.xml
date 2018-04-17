@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nJcx's Blog - 杂项</title><link href="http://www.njcx.bid/" rel="alternate"></link><link href="http://www.njcx.bid/feeds/za-xiang.atom.xml" rel="self"></link><id>http://www.njcx.bid/</id><updated>2017-04-14T10:20:00+03:00</updated><entry><title>Git简明教程</title><link href="http://www.njcx.bid/posts/D9.html" rel="alternate"></link><published>2017-04-14T10:20:00+03:00</published><updated>2017-04-14T10:20:00+03:00</updated><author><name>nJcx</name></author><id>tag:www.njcx.bid,2017-04-14:/posts/D9.html</id><summary type="html">&lt;p&gt;Git简明教程&lt;/p&gt;</summary><content type="html">&lt;ul&gt;
+&lt;li&gt;介绍&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;git是 Linus，也就是Linux kernel 的作者所写的分布式版本控制系统。下面介绍一下git是怎么使用的：&lt;/p&gt;
+&lt;h1&gt;1&lt;/h1&gt;
+&lt;p&gt;先安装git&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo apt-get install git git-core
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后我们先设置Git的user name和email：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;git config --global user.name &lt;span class="s2"&gt;"nJcx"&lt;/span&gt;
+&amp;gt;git config --global user.email &lt;span class="s2"&gt;"njcx86@gmail.com"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后我们再生成Git SSH Key,一直回车就行了，然后我们打开当前用户目录下即～/.ssh/id_rsa.pub这个文件，把里面的东西添加到github、码云、coding上，就可以用了&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;ssh-keygen -t rsa -C “njcx86@gmail.com”
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我们先建个目录，并且在目录里面初始化git所需的相关文件，里面会有一个.git 的隐藏文件夹&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; mkdir git 
+&amp;gt;cd git &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; git init
+&amp;gt;echo &lt;span class="s2"&gt;"# git_"&lt;/span&gt; &amp;gt;&amp;gt; README.md
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我们在里面加了一个README.md文件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; git add .
+&amp;gt; git commit -m &lt;span class="s2"&gt;"add more"&lt;/span&gt; 
+&amp;gt;git remote add origin git@github.com:njcx/git_.git
+&amp;gt;git push -u origin master
+
+//第一步,用命令 git add 告诉Git,把文件添加到仓库
+//用命令 git commit （-m 就是加注释的意思）告诉Git,把文件提交到仓库:
+//第三步，添加远程仓库
+//第四步，把本地文件变动提交远程仓库
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看本地是否有变动或者状态&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;git status
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看差异或者修改的内容&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;git diff
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看提交的tag&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt;git log
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;2&lt;/h1&gt;
+&lt;p&gt;既然是版本控制系统，我们肯定可以回退到历史上某个文件状态，我们先用 git log 看一下有哪些历史commit tag&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;commit 5b42df0cfd1b5d6cdfc7d5b251ea770ca35cbec1
+Author: nJcx &amp;lt;njcx86@gmail.com&amp;gt;
+Date:   Thu Jun &lt;span class="m"&gt;8&lt;/span&gt; &lt;span class="m"&gt;18&lt;/span&gt;:16:57 &lt;span class="m"&gt;2017&lt;/span&gt; +0800
+
+    add more
+
+commit d171df385fb3af5b092c65bfea5011316de936d0
+Author: nJcx &amp;lt;njcx86@gmail.com&amp;gt;
+Date:   Thu Jun &lt;span class="m"&gt;8&lt;/span&gt; &lt;span class="m"&gt;17&lt;/span&gt;:53:49 &lt;span class="m"&gt;2017&lt;/span&gt; +0800
+
+    first commit
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;就像这样,前面介绍了，在工作区里面有.git目录，这个是git版本库，我们的相关操作都会在这个目录产生记录。我们在工作区里面通过 git add xxx 把相关文件的改动提交到暂存区index,我们又通过git commit 把文件状态改动提交到默认的主分支master上，也就是说，我们会经过两个状态，一个是提交到暂存区index，另一个就是提交到分支上。&lt;/p&gt;
+&lt;p&gt;我们再创建一个README2.md 文件&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"# git_"&lt;/span&gt; &amp;gt;&amp;gt; README2.md
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后 git status 一下&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;未跟踪的文件:
+  （使用 &lt;span class="s2"&gt;"git add &amp;lt;文件&amp;gt;..."&lt;/span&gt; 以包含要提交的内容）
+
+    README2.md
+
+提交为空，但是存在尚未跟踪的文件（使用 &lt;span class="s2"&gt;"git add"&lt;/span&gt; 建立跟踪）
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我们先把它加入跟踪状态，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; git add README2.md &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; git commit -m &lt;span class="s2"&gt;"add file README2.MD&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;现在我们编辑它&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;"by nJcx"&lt;/span&gt; &amp;gt;&amp;gt; README2.md
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下面，我们就会存在3种状态：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1，就是文件在工作区被修改了，没有git add 到暂存区&lt;/li&gt;
+&lt;li&gt;2，文件被 git add 到暂存区了，但是没有提交到分支上&lt;/li&gt;
+&lt;li&gt;3，文件的修改被git commit 分支上了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;第一种状态&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; git checkout -- README2.md
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第二种&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; git reset HEAD README2.md
+&amp;gt; git checkout -- README2.md
+// HEAD,表示最新的版本。
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第三种&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; git reset --hard HEAD^ 
+//这里也可以用 commit_id,通过git log 或者 git reflog 查看
+// HEAD^表示上一个版本，上上一个版本就是 HEAD^^
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第三种有一个缺点，如果一次commit 多个文件，回退版本的时候会把其他正常的文件也回退了，所以有的时候，我们可以把不想回退的文件单独commit一下&lt;/p&gt;
+&lt;p&gt;如果，我们回退的时候，又后悔了，又想回到某个最新的版本，那该怎么办？&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; git reflog
+&amp;gt; git reset --hard commit_id
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h1&gt;3&lt;/h1&gt;
+&lt;p&gt;讲版本控制系统就不能不讲分支，我们用 git branch 查看当前有哪些分支以及所在分支&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;njcx@njcx:~/桌面/git$ git branch
+* master
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我们创建一个dev 分支,并切换分支&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;njcx@njcx:~/桌面/git$  git checkout -b dev
+njcx@njcx:~/桌面/git$  git branch
+* dev
+  master
+//创建分支:git branch &amp;lt;name&amp;gt;
+//切换分支: git checkout &amp;lt;name&amp;gt;
+//创建+切换分支: git checkout ‐b &amp;lt;name&amp;gt;
+//删除分支: git branch ‐d &amp;lt;name&amp;gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Git"></category></entry></feed>

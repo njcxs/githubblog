@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nJcx's Blog - Tornado</title><link href="http://www.njcx.bid/" rel="alternate"></link><link href="http://www.njcx.bid/feeds/tornado.atom.xml" rel="self"></link><id>http://www.njcx.bid/</id><updated>2017-04-12T10:20:00+03:00</updated><entry><title>Tornado 学习笔记</title><link href="http://www.njcx.bid/posts/D7.html" rel="alternate"></link><published>2017-04-12T10:20:00+03:00</published><updated>2017-04-12T10:20:00+03:00</updated><author><name>nJcx</name></author><id>tag:www.njcx.bid,2017-04-12:/posts/D7.html</id><summary type="html">&lt;p&gt;tornado 学习笔记&lt;/p&gt;</summary><content type="html">&lt;h4&gt;开始&lt;/h4&gt;
+&lt;p&gt;Tornado全称Tornado Web Server，是一个用Python语言写成的Web服务器兼Web应用框架。作为Web框架，是一个轻量级的Web框架，其拥有异步非阻塞IO的处理方式。作为Web服务器，Tornado有较为出色的抗负载能力。得利于其非阻塞的方式和对 epoll 的运用，Tornado 每秒可以处理数以千计的连接，这意味着对于实时Web服务来说，Tornado 是一个理想的 Web 框架。无论做为一个HTTP Server 还是一个Web框架，Tornado都足够优秀。&lt;/p&gt;
+&lt;h4&gt;安装&lt;/h4&gt;
+&lt;p&gt;Tornado 是纯Python实现的，完美支持PyPy，在Jit 加持下性能更是如虎添翼，我个人在做Web开发的时候，就很喜欢用PyPy，性能差异可以直接感觉到，推荐大家试一试。 目前Tornado的版本是4.5.1，我们可以配置国内源，把下面内容写到 ～/.pip/pip.conf 文件中，我的系统是ubuntu16.04，其他linux发行版类似&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;global&lt;span class="o"&gt;]&lt;/span&gt;
+index-url &lt;span class="o"&gt;=&lt;/span&gt; http://pypi.douban.com/simple
+&lt;span class="o"&gt;[&lt;/span&gt;install&lt;span class="o"&gt;]&lt;/span&gt;
+trusted-host&lt;span class="o"&gt;=&lt;/span&gt;pypi.douban.com
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;安装方式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Python&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;tornado&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;PyPy&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;pypy&lt;/span&gt; &lt;span class="n"&gt;pypy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt; &lt;span class="n"&gt;pypy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;dev&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;wget&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pypa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;io&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;pypy&lt;/span&gt; &lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;pypy&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;tornado&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;MySQL 数据库安装
+&amp;gt;apt-get install mysql-server libmysqlclient-dev -y
+&amp;gt;pypy -m pip install mysql-python
+或者
+&amp;gt;python -m pip install mysql-python
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;模块&lt;/h4&gt;
+&lt;p&gt;Tornado包含以下模块，和Django、Flask 不同，Tornado没有用二级目录作为模块的名字(Django、Flask喜欢把类和方法集中到__init__.py里面)，而是直接用Py文件作为模块&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web框架&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tornado.web - RequestHandler和Application类&lt;/p&gt;
+&lt;p&gt;tornado.template - 模板&lt;/p&gt;
+&lt;p&gt;tornado.routing - 路由&lt;/p&gt;
+&lt;p&gt;tornado.escape - 转义和字符串模块&lt;/p&gt;
+&lt;p&gt;tornado.locale - 国际化支持&lt;/p&gt;
+&lt;p&gt;tornado.websocket - 提供WebSocket支持&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP服务器和客户端&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tornado.httpserver - 非阻塞HTTP服务器&lt;/p&gt;
+&lt;p&gt;tornado.httpclient - 异步HTTP客户端&lt;/p&gt;
+&lt;p&gt;tornado.httputil - 处理HTTP头文件和URL&lt;/p&gt;
+&lt;p&gt;tornado.http1connection - HTTP/1.x客户端/服务器实现&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;异步&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tornado.ioloop - 主事件循环&lt;/p&gt;
+&lt;p&gt;tornado.iostream - 非阻塞socket的包装&lt;/p&gt;
+&lt;p&gt;tornado.netutil - 网络工具集&lt;/p&gt;
+&lt;p&gt;tornado.tcpclient- IOStream 连接池（tcpclient）&lt;/p&gt;
+&lt;p&gt;tornado.tcpserver- 基于 IOStream的TCP服务器&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;并发&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tornado.gen - 简化异步的模块&lt;/p&gt;
+&lt;p&gt;tornado.concurrent - 使用线程和futures&lt;/p&gt;
+&lt;p&gt;tornado.locks - 同步原语&lt;/p&gt;
+&lt;p&gt;tornado.queues - 队列&lt;/p&gt;
+&lt;p&gt;tornado.process - 多进程工具集&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;与其他服务集成&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tornado.auth - 使用OpenID和OAuth进行第三方登录&lt;/p&gt;
+&lt;p&gt;tornado.wsgi - 与其他Python框架和服务器交互&lt;/p&gt;
+&lt;p&gt;tornado.platform.asyncio- asyncio和 Tornado的交互接口&lt;/p&gt;
+&lt;p&gt;tornado.platform.caresresolver - C-Ares的异步DNS解析器&lt;/p&gt;
+&lt;p&gt;tornado.platform.twisted - Twisted 和 Tornado的交互接口&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;工具集&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;tornado.autoreload - 自动加载代码&lt;/p&gt;
+&lt;p&gt;tornado.log - 日志处理&lt;/p&gt;
+&lt;p&gt;tornado.options - 命令行解析&lt;/p&gt;
+&lt;p&gt;tornado.stack_context - 异步回调的异常处理&lt;/p&gt;
+&lt;p&gt;tornado.testing - 单元测试支持&lt;/p&gt;
+&lt;p&gt;tornado.util - 实用工具集&lt;/p&gt;
+&lt;h4&gt;实践&lt;/h4&gt;
+&lt;p&gt;简单的抛砖引玉，通过get传递参数并显示出来，pypy untitled2.py --port=8082,http://127.0.0.1:8082/?greeting=njcx&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tornado.web&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RequestHandler&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Application&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tornado.httpserver&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HTTPServer&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tornado.ioloop&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;IOLoop&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tornado.options&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;define&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;parse_command_line&lt;/span&gt;
+
+&lt;span class="n"&gt;define&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"port"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;default&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;8081&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;help&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"run on the given port"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Index&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;RequestHandler&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;welcome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_argument&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'greeting'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'Hello'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;welcome&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;', friendly user!'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="o"&gt;==&lt;/span&gt;&lt;span class="s2"&gt;"__main__"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;parse_command_line&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Application&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;handlers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[(&lt;/span&gt;&lt;span class="sa"&gt;r&lt;/span&gt;&lt;span class="s2"&gt;"/"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Index&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
+    &lt;span class="n"&gt;http_server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;HTTPServer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;http_server&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;listen&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;IOLoop&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;instance&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Tornado"></category></entry></feed>

@@ -12,6 +12,8 @@
 </title>
   <link rel="canonical" href="http://www.njcx.bid/posts/C2.html">
 
+  <link rel="alternate" type="application/atom+xml" href="http://www.njcx.bid/feeds/all.atom.xml" title="Full Atom Feed">
+  <link rel="alternate" type="application/atom+xml" href="http://www.njcx.bid/feeds/python.atom.xml" title="Categories Atom Feed">
 
   <link rel="apple-touch-icon" href="http://www.njcx.bid/apple-touch-icon.png" sizes="180x180">
   <link rel="icon" type="image/png" href="http://www.njcx.bid/favicon-32x32.png" sizes="32x32">
@@ -124,7 +126,7 @@ var _hmt = _hmt || [];
 <li>Pool</li>
 </ul>
 <p>通过创建Process类的对象来创建进程，Process([group [, target [, name [, args [, kwargs]]]]])，target表示调用对象，args表示调用对象的位置参数元组。kwargs表示调用对象的字典。name为别名。group实质上不使用。</p>
-<div class="highlight"><pre><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
 
@@ -132,7 +134,7 @@ var _hmt = _hmt || [];
     <span class="k">print</span> <span class="n">name</span> 
     <span class="k">print</span> <span class="s1">'子进程(</span><span class="si">%s</span><span class="s1">)'</span> <span class="o">%</span> <span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
 
-<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s1">'__main__'</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">'__main__'</span><span class="p">:</span>
     <span class="k">print</span> <span class="s1">'父进程 (</span><span class="si">%s</span><span class="s1">)'</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">findx</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">' 我是宝宝'</span><span class="p">,))</span>
     <span class="k">print</span> <span class="s1">'开始'</span>
@@ -149,7 +151,7 @@ var _hmt = _hmt || [];
 <span class="sd">"""</span>
 </pre></div>
 <p>如果我们需要建一个进程池，供使用时从中随机选取一个进程处理任务，我们需要使用Pool类，一般情况下，Pool默认创建的进程数等于CPU核心数，Pool([processes[, initializer[, initargs[, maxtasksperchild[, context]]]]])，</p>
-<div class="highlight"><pre><span class="c1"># -*- coding: utf-8 -*-</span>
+<div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Pool</span>
 
@@ -157,7 +159,7 @@ var _hmt = _hmt || [];
     <span class="k">print</span> <span class="n">name</span>
     <span class="k">print</span> <span class="s1">'子进程(</span><span class="si">%s</span><span class="s1">)'</span> <span class="o">%</span> <span class="p">(</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
 
-<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s1">'__main__'</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">'__main__'</span><span class="p">:</span>
     <span class="k">print</span> <span class="s1">'父进程 (</span><span class="si">%s</span><span class="s1">)'</span> <span class="o">%</span> <span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">()</span>
     <span class="n">p</span> <span class="o">=</span>  <span class="n">Pool</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
@@ -168,7 +170,7 @@ var _hmt = _hmt || [];
     <span class="k">print</span> <span class="s1">'结束'</span>
 </pre></div>
 <p>进程之间肯定是需要通信的，multiprocessing提供了相关封装，简单介绍一下 Queue的使用</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Queue</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span><span class="p">,</span> <span class="n">Queue</span>
 
 <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">q</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'A'</span><span class="p">,</span> <span class="s1">'B'</span><span class="p">,</span> <span class="s1">'C'</span><span class="p">]:</span>
@@ -180,7 +182,7 @@ var _hmt = _hmt || [];
         <span class="n">value</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="k">print</span> <span class="s1">'Get </span><span class="si">%s</span><span class="s1"> from queue.'</span> <span class="o">%</span> <span class="n">value</span>
 
-<span class="k">if</span> <span class="n">__name__</span><span class="o">==</span><span class="s1">'__main__'</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
     <span class="n">pw</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">write</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">q</span><span class="p">,))</span>
     <span class="n">pr</span> <span class="o">=</span> <span class="n">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">read</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">q</span><span class="p">,))</span>

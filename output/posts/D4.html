@@ -12,6 +12,8 @@
 </title>
   <link rel="canonical" href="http://www.njcx.bid/posts/D4.html">
 
+  <link rel="alternate" type="application/atom+xml" href="http://www.njcx.bid/feeds/all.atom.xml" title="Full Atom Feed">
+  <link rel="alternate" type="application/atom+xml" href="http://www.njcx.bid/feeds/django.atom.xml" title="Categories Atom Feed">
 
   <link rel="apple-touch-icon" href="http://www.njcx.bid/apple-touch-icon.png" sizes="180x180">
   <link rel="icon" type="image/png" href="http://www.njcx.bid/favicon-32x32.png" sizes="32x32">
@@ -108,10 +110,10 @@ var _hmt = _hmt || [];
 <p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">RESTful API 设计指南</a></p>
 <h4>django 之 RESTful</h4>
 <p>浏览器向http服务器发出请求,服务器返回一个html,然后浏览器渲染这个html,然后，大家就能看到网页了，而RESTful是返回json、xml、yaml、csv等序列化文件，作为resource的载体，供前端或者app解析。django实现RESTful，一般使用djangorestframework模块</p>
-<div class="highlight"><pre><span class="n">pip</span> <span class="n">install</span> <span class="n">djangorestframework</span>
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">djangorestframework</span>
 </pre></div>
 <p>然后在settings.py中添加 rest_framework</p>
-<div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+<div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
     <span class="o">...</span>
     <span class="s1">'rest_framework'</span><span class="p">,</span>
 <span class="p">)</span>

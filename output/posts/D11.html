@@ -12,6 +12,8 @@
 </title>
   <link rel="canonical" href="http://www.njcx.bid/posts/D11.html">
 
+  <link rel="alternate" type="application/atom+xml" href="http://www.njcx.bid/feeds/all.atom.xml" title="Full Atom Feed">
+  <link rel="alternate" type="application/atom+xml" href="http://www.njcx.bid/feeds/flask.atom.xml" title="Categories Atom Feed">
 
   <link rel="apple-touch-icon" href="http://www.njcx.bid/apple-touch-icon.png" sizes="180x180">
   <link rel="icon" type="image/png" href="http://www.njcx.bid/favicon-32x32.png" sizes="32x32">
@@ -119,14 +121,14 @@ var _hmt = _hmt || [];
 </ul>
 <h4>Flask 之 RESTful</h4>
 <p>浏览器向http服务器发出请求,服务器返回一个html,然后浏览器渲染这个html,然后，大家就能看到网页了，而RESTful是返回json、xml、yaml、csv等序列化文件，作为resource的载体，供前端或者app解析。Flask实现RESTful，可以使用Flask-RESTful 插件，感觉这个插件比djangorestframework模块轻多了。</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="n">books</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="s1">'id'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s1">'title'</span><span class="p">:</span> <span class="s1">u'Django book'</span><span class="p">,</span>
-        <span class="s1">'description'</span><span class="p">:</span> <span class="s1">u'a book about django'</span><span class="p">,</span>
+        <span class="s1">'title'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'Django book'</span><span class="p">,</span>
+        <span class="s1">'description'</span><span class="p">:</span> <span class="sa">u</span><span class="s1">'a book about django'</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">]</span>
 
@@ -134,26 +136,26 @@ var _hmt = _hmt || [];
 <span class="k">def</span> <span class="nf">get_book</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">'books'</span><span class="p">:</span> <span class="n">books</span><span class="p">})</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 <p>这里我们直接把任务列表存储在内存中
 我们通过</p>
-<div class="highlight"><pre>&gt; curl -i http://127.0.0.1:5000/api/v1.0/
+<div class="highlight"><pre><span></span>&gt; curl -i http://127.0.0.1:5000/api/v1.0/
 </pre></div>
 <p>就可以看到</p>
-<div class="highlight"><pre>njcx@debian:~$ curl -i http://127.0.0.1:5000/api/v1.0/
+<div class="highlight"><pre><span></span>njcx@debian:~$ curl -i http://127.0.0.1:5000/api/v1.0/
 HTTP/1.0 <span class="m">200</span> OK
 Content-Type: application/json
-Content-Length: 123
+Content-Length: <span class="m">123</span>
 Server: Werkzeug/0.12.2 Python/2.7.9
-Date: Sun, <span class="m">11</span> Jun <span class="m">2017</span> 11:32:20 GMT
+Date: Sun, <span class="m">11</span> Jun <span class="m">2017</span> <span class="m">11</span>:32:20 GMT
 
 <span class="o">{</span>
   <span class="s2">"books"</span>: <span class="o">[</span>
     <span class="o">{</span>
       <span class="s2">"description"</span>: <span class="s2">"a book about django"</span>, 
-      <span class="s2">"id"</span>: 1, 
+      <span class="s2">"id"</span>: <span class="m">1</span>, 
       <span class="s2">"title"</span>: <span class="s2">"Django book"</span>
     <span class="o">}</span>
   <span class="o">]</span>

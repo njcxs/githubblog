@@ -12,6 +12,8 @@
 </title>
   <link rel="canonical" href="http://www.njcx.bid/posts/A1.html">
 
+  <link rel="alternate" type="application/atom+xml" href="http://www.njcx.bid/feeds/all.atom.xml" title="Full Atom Feed">
+  <link rel="alternate" type="application/atom+xml" href="http://www.njcx.bid/feeds/linux.atom.xml" title="Categories Atom Feed">
 
   <link rel="apple-touch-icon" href="http://www.njcx.bid/apple-touch-icon.png" sizes="180x180">
   <link rel="icon" type="image/png" href="http://www.njcx.bid/favicon-32x32.png" sizes="32x32">
@@ -109,127 +111,127 @@ var _hmt = _hmt || [];
 </ul>
 <h2>配置</h2>
 <p>MASTER</p>
-<div class="highlight"><pre>vrrp_instance VI_1 <span class="o">{</span>
+<div class="highlight"><pre><span></span>vrrp_instance VI_1 <span class="o">{</span>
             state MASTER            <span class="c1"># 状态实际MASTER</span>
             interface eth0            <span class="c1"># 监听网卡切换</span>
-            virtual_router_id 51
+            virtual_router_id <span class="m">51</span>
             priority <span class="m">100</span>                <span class="c1"># 优先级（越大优先级越高）</span>
-            advert_int 1
+            advert_int <span class="m">1</span>
             authentication <span class="o">{</span>
                 auth_type PASS
-                auth_pass 1111
+                auth_pass <span class="m">1111</span>
             <span class="o">}</span>
             virtual_ipaddress <span class="o">{</span>        <span class="c1"># 虚拟IP地址列表，即VIP</span>
-                172.28.14.227
-                172.28.14.228
-                172.28.14.229
+                <span class="m">172</span>.28.14.227
+                <span class="m">172</span>.28.14.228
+                <span class="m">172</span>.28.14.229
             <span class="o">}</span>
         <span class="o">}</span>
-        virtual_server 172.28.14.227 <span class="m">8080</span> <span class="o">{</span>
-            delay_loop 6
+        virtual_server <span class="m">172</span>.28.14.227 <span class="m">8080</span> <span class="o">{</span>
+            delay_loop <span class="m">6</span>
             lb_algo wlc
             lb_kind DR                    <span class="c1"># DR模式</span>
-            persistence_timeout 50
+            persistence_timeout <span class="m">50</span>
             protocol TCP
-            real_server 172.28.19.100 <span class="m">8080</span> <span class="o">{</span>
+            real_server <span class="m">172</span>.28.19.100 <span class="m">8080</span> <span class="o">{</span>
                 weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
                 TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 8080
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">8080</span>
                 <span class="o">}</span>
             <span class="o">}</span>
-            real_server 172.28.19.101 <span class="m">8080</span> <span class="o">{</span>
+            real_server <span class="m">172</span>.28.19.101 <span class="m">8080</span> <span class="o">{</span>
                 weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
                 TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 8080
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">8080</span>
                 <span class="o">}</span>
             <span class="o">}</span>
-            real_server 172.28.19.102 <span class="m">8080</span> <span class="o">{</span>
+            real_server <span class="m">172</span>.28.19.102 <span class="m">8080</span> <span class="o">{</span>
                 weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
                 TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 8080
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        virtual_server 172.28.14.228 <span class="m">25</span> <span class="o">{</span>
-            delay_loop 6
-            lb_algo wlc
-            lb_kind DR                    <span class="c1"># DR模式</span>
-            persistence_timeout 50
-            protocol TCP
-            real_server 172.28.19.103 <span class="m">25</span> <span class="o">{</span>
-                weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
-                TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 25
-                <span class="o">}</span>
-            <span class="o">}</span>
-            real_server 172.28.19.104 <span class="m">25</span> <span class="o">{</span>
-                weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
-                TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 25
-                <span class="o">}</span>
-            <span class="o">}</span>
-            real_server 172.28.19.105 <span class="m">25</span> <span class="o">{</span>
-                weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
-                TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 25
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">8080</span>
                 <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
-        virtual_server 172.28.14.229 <span class="m">21</span> <span class="o">{</span>
-            delay_loop 6
+        virtual_server <span class="m">172</span>.28.14.228 <span class="m">25</span> <span class="o">{</span>
+            delay_loop <span class="m">6</span>
             lb_algo wlc
             lb_kind DR                    <span class="c1"># DR模式</span>
-            persistence_timeout 50
+            persistence_timeout <span class="m">50</span>
             protocol TCP
-            real_server 172.28.19.106 <span class="m">21</span> <span class="o">{</span>
+            real_server <span class="m">172</span>.28.19.103 <span class="m">25</span> <span class="o">{</span>
                 weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
                 TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 21
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">25</span>
                 <span class="o">}</span>
             <span class="o">}</span>
-            real_server 172.28.19.107 <span class="m">21</span> <span class="o">{</span>
+            real_server <span class="m">172</span>.28.19.104 <span class="m">25</span> <span class="o">{</span>
                 weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
                 TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 21
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">25</span>
                 <span class="o">}</span>
             <span class="o">}</span>
-            real_server 172.28.19.108 <span class="m">21</span> <span class="o">{</span>
+            real_server <span class="m">172</span>.28.19.105 <span class="m">25</span> <span class="o">{</span>
                 weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
                 TCP_CHECK <span class="o">{</span>
-                    connect_timeout 3
-                    nb_get_retry 3
-                    delay_before_retry 3
-                    connect_port 21
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">25</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        virtual_server <span class="m">172</span>.28.14.229 <span class="m">21</span> <span class="o">{</span>
+            delay_loop <span class="m">6</span>
+            lb_algo wlc
+            lb_kind DR                    <span class="c1"># DR模式</span>
+            persistence_timeout <span class="m">50</span>
+            protocol TCP
+            real_server <span class="m">172</span>.28.19.106 <span class="m">21</span> <span class="o">{</span>
+                weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
+                TCP_CHECK <span class="o">{</span>
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">21</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            real_server <span class="m">172</span>.28.19.107 <span class="m">21</span> <span class="o">{</span>
+                weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
+                TCP_CHECK <span class="o">{</span>
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">21</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            real_server <span class="m">172</span>.28.19.108 <span class="m">21</span> <span class="o">{</span>
+                weight <span class="m">1</span>                  <span class="c1"># 权重（权重越高处理的请求越多）</span>
+                TCP_CHECK <span class="o">{</span>
+                    connect_timeout <span class="m">3</span>
+                    nb_get_retry <span class="m">3</span>
+                    delay_before_retry <span class="m">3</span>
+                    connect_port <span class="m">21</span>
                 <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
 </pre></div>
 <p>BACKUP</p>
-<div class="highlight"><pre>        vrrp_instance VI_1 <span class="o">{</span>
+<div class="highlight"><pre><span></span>        vrrp_instance VI_1 <span class="o">{</span>
             state BACKP            <span class="c1"># 状态实际BACKUP</span>
             ...
             priority <span class="m">99</span>                <span class="c1"># 优先级99（比MASTER优先级100低）</span>
@@ -237,8 +239,8 @@ var _hmt = _hmt || [];
         <span class="o">}</span>
 </pre></div>
 <p>realserver</p>
-<div class="highlight"><pre> <span class="c1">#!/bin/bash</span>
-        <span class="nv">VIP</span><span class="o">=</span>172.28.14.227
+<div class="highlight"><pre><span></span> <span class="c1">#!/bin/bash</span>
+        <span class="nv">VIP</span><span class="o">=</span><span class="m">172</span>.28.14.227
         . /etc/rc.d/init.d/functions
         <span class="k">case</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> in
         start<span class="o">)</span>
@@ -246,9 +248,9 @@ var _hmt = _hmt || [];
             <span class="nb">echo</span> <span class="m">2</span> &gt; /proc/sys/net/ipv4/conf/lo/arp_announce
             <span class="nb">echo</span> <span class="m">1</span> &gt; /proc/sys/net/ipv4/conf/all/arp_ignore
             <span class="nb">echo</span> <span class="m">2</span> &gt; /proc/sys/net/ipv4/conf/all/arp_announce
-            ifconfig lo:0 $VIP broadcast $VIP netmask 255.255.255.255 up
-            /sbin/route add -host $VIP dev lo:0
-            sysctl -p &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
+            ifconfig lo:0 <span class="nv">$VIP</span> broadcast <span class="nv">$VIP</span> netmask <span class="m">255</span>.255.255.255 up
+            /sbin/route add -host <span class="nv">$VIP</span> dev lo:0
+            sysctl -p &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
             <span class="nb">echo</span> <span class="s2">"realserver start OK"</span>
             <span class="p">;;</span>
         stop<span class="o">)</span>
@@ -257,14 +259,14 @@ var _hmt = _hmt || [];
             <span class="nb">echo</span> <span class="m">0</span> &gt; /proc/sys/net/ipv4/conf/all/arp_ignore
             <span class="nb">echo</span> <span class="m">0</span> &gt; /proc/sys/net/ipv4/conf/all/arp_announce
             ifconfig lo:0 down
-            /sbin/route del $VIP &gt; /dev/null 2&gt;<span class="p">&amp;</span>1
+            /sbin/route del <span class="nv">$VIP</span> &gt; /dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
             <span class="nb">echo</span> <span class="s2">"realserver stoped"</span>
             <span class="p">;;</span>
         *<span class="o">)</span>
             <span class="nb">echo</span> <span class="s2">"Usage:</span><span class="nv">$0</span><span class="s2"> {start|stop}"</span>
-            <span class="nb">exit</span> 1
+            <span class="nb">exit</span> <span class="m">1</span>
         <span class="k">esac</span>
-        <span class="nb">exit</span> 0
+        <span class="nb">exit</span> <span class="m">0</span>
 </pre></div>
 <h2>测试</h2>
 <p>把两个web server 页面设置不同实测.</p>

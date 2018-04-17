@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nJcx's Blog - Flask</title><link href="http://www.njcx.bid/" rel="alternate"></link><link href="http://www.njcx.bid/feeds/flask.atom.xml" rel="self"></link><id>http://www.njcx.bid/</id><updated>2017-04-16T10:20:00+03:00</updated><entry><title>Flask-RESTful 探秘</title><link href="http://www.njcx.bid/posts/D11.html" rel="alternate"></link><published>2017-04-16T10:20:00+03:00</published><updated>2017-04-16T10:20:00+03:00</updated><author><name>nJcx</name></author><id>tag:www.njcx.bid,2017-04-16:/posts/D11.html</id><summary type="html">&lt;p&gt;Flask-RESTful 探秘&lt;/p&gt;</summary><content type="html">&lt;h4&gt;介绍&lt;/h4&gt;
+&lt;p&gt;首先,什么是RESTful? 阮一峰大大写了两篇博文介绍的比较详尽&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.ruanyifeng.com/blog/2011/09/restful"&gt;理解RESTful架构&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html"&gt;RESTful API 设计指南&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;url里面不要给出动词，动词都是通过HTTP动词搞定（截取阮一峰大大的博客）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GET /zoos：列出所有动物园&lt;/li&gt;
+&lt;li&gt;POST /zoos：新建一个动物园&lt;/li&gt;
+&lt;li&gt;GET /zoos/ID：获取某个指定动物园的信息&lt;/li&gt;
+&lt;li&gt;PUT /zoos/ID：更新某个指定动物园的信息（提供该动物园的全部信息）&lt;/li&gt;
+&lt;li&gt;PATCH /zoos/ID：更新某个指定动物园的信息（提供该动物园的部分信息）&lt;/li&gt;
+&lt;li&gt;DELETE /zoos/ID：删除某个动物园&lt;/li&gt;
+&lt;li&gt;GET /zoos/ID/animals：列出某个指定动物园的所有动物&lt;/li&gt;
+&lt;li&gt;DELETE /zoos/ID/animals/ID：删除某个指定动物园的指定动物&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Flask 之 RESTful&lt;/h4&gt;
+&lt;p&gt;浏览器向http服务器发出请求,服务器返回一个html,然后浏览器渲染这个html,然后，大家就能看到网页了，而RESTful是返回json、xml、yaml、csv等序列化文件，作为resource的载体，供前端或者app解析。Flask实现RESTful，可以使用Flask-RESTful 插件，感觉这个插件比djangorestframework模块轻多了。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;jsonify&lt;/span&gt;
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;'id'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;'title'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sa"&gt;u&lt;/span&gt;&lt;span class="s1"&gt;'Django book'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;'description'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="sa"&gt;u&lt;/span&gt;&lt;span class="s1"&gt;'a book about django'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'/api/v1.0/'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;methods&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'GET'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_book&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;jsonify&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s1"&gt;'books'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;books&lt;/span&gt;&lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;'__main__'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里我们直接把任务列表存储在内存中
+我们通过&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; curl -i http://127.0.0.1:5000/api/v1.0/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;就可以看到&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;njcx@debian:~$ curl -i http://127.0.0.1:5000/api/v1.0/
+HTTP/1.0 &lt;span class="m"&gt;200&lt;/span&gt; OK
+Content-Type: application/json
+Content-Length: &lt;span class="m"&gt;123&lt;/span&gt;
+Server: Werkzeug/0.12.2 Python/2.7.9
+Date: Sun, &lt;span class="m"&gt;11&lt;/span&gt; Jun &lt;span class="m"&gt;2017&lt;/span&gt; &lt;span class="m"&gt;11&lt;/span&gt;:32:20 GMT
+
+&lt;span class="o"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"books"&lt;/span&gt;: &lt;span class="o"&gt;[&lt;/span&gt;
+    &lt;span class="o"&gt;{&lt;/span&gt;
+      &lt;span class="s2"&gt;"description"&lt;/span&gt;: &lt;span class="s2"&gt;"a book about django"&lt;/span&gt;, 
+      &lt;span class="s2"&gt;"id"&lt;/span&gt;: &lt;span class="m"&gt;1&lt;/span&gt;, 
+      &lt;span class="s2"&gt;"title"&lt;/span&gt;: &lt;span class="s2"&gt;"Django book"&lt;/span&gt;
+    &lt;span class="o"&gt;}&lt;/span&gt;
+  &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;span class="o"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Flask"></category></entry></feed>

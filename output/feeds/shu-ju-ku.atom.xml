@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>nJcx's Blog - 数据库</title><link href="http://www.njcx.bid/" rel="alternate"></link><link href="http://www.njcx.bid/feeds/shu-ju-ku.atom.xml" rel="self"></link><id>http://www.njcx.bid/</id><updated>2017-04-04T10:20:00+03:00</updated><entry><title>Redis学习笔记总结(A)</title><link href="http://www.njcx.bid/posts/C6.html" rel="alternate"></link><published>2017-04-04T10:20:00+03:00</published><updated>2017-04-04T10:20:00+03:00</updated><author><name>nJcx</name></author><id>tag:www.njcx.bid,2017-04-04:/posts/C6.html</id><summary type="html">&lt;p&gt;Redis学习笔记&lt;/p&gt;</summary><content type="html">&lt;h4&gt;介绍&lt;/h4&gt;
+&lt;p&gt;Redis是很火的一个Key-Value数据库,它以优异的性能得到了广泛的应用.Redis是一个内存数据库，但在磁盘数据库上是持久的，它有5种数据类型，字符串，哈希，列表，集合，可排序集合，它所有的操作都是原子类型的,可以应对复杂的生产环境,可用于多种用例，如：缓存，消息队列，应用程序中短期数据。&lt;/p&gt;
+&lt;h4&gt;安装&lt;/h4&gt;
+&lt;p&gt;Redis 可以编译安装,也可以apt-get /yum安装,一般编译安装的版本比较新一些&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;centos/rhce : yum install redis -y
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;debian/ubuntu : sudo apt-get install redis-server -y
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;编译安装,&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;wget http://download.redis.io/releases/redis-3.2.9.tar.gz &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; tar -xzvf redis-3.2.9.tar.gz &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; redis-3.2.9
+
+make &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make &lt;span class="nv"&gt;PREFIX&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/usr/local/redis install &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; mkdir /usr/local/redis/etc/
+
+cp redis.conf /usr/local/redis/etc/ &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; /usr/local/redis/bin/ &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; cp redis-benchmark redis-cli redis-server /usr/bin/
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;使用&lt;/h4&gt;
+&lt;p&gt;先通过读取配置文件启动服务端,我通过apt-get 安装的,默认配置文件在 /etc/redis/redis.conf,先启动服务端&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;redis-server /etc/redis/redis.conf
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;再启动客服端&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;redis-cli
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;命令&lt;/h4&gt;
+&lt;p&gt;Redis的命令主要围绕着:配置,以及相关数据类型的操作的.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;查看配置&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; CONFIG GET *
+
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; CONFIG GET loglevel  
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;更改配置&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; CONFIG SET CONFIG_SETTING_NAME NEW_CONFIG_VALUE
+
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; CONFIG SET loglevel &lt;span class="s2"&gt;"notice"&lt;/span&gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Redis 键命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;　DEL key　　             // 删除key
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; DUMP key                // 返回存储在指定键的值的序列化版本。
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; EXISTS key              // 检查键是否存在
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; EXPIRE key seconds         //   设置键在指定时间秒数之后到期/过期。
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; EXPIRE key timestamp        // 设置在指定时间戳之后键到期/过期。这里的时间是Unix时间戳格式。
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; PEXPIRE key milliseconds     // 设置键的到期时间&lt;span class="o"&gt;(&lt;/span&gt;以毫秒为单位&lt;span class="o"&gt;)&lt;/span&gt;。1000毫秒等于1秒
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; PEXPIREAT key milliseconds-timestamp // 以Unix时间戳形式来设置键的到期时间&lt;span class="o"&gt;(&lt;/span&gt;以毫秒为单位&lt;span class="o"&gt;)&lt;/span&gt;。
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; KEYS pattern                // 查找与指定模式匹配的所有键。
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; MOVE key db                // 将键移动到另一个数据库
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; PERSIST key                // 删除指定键的过期时间
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; PTTL key                     // 获取键的剩余到期时间
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; RANDOMKEY                  // 随机获取一个key
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; RENAME key newkey        // 重命名一个key
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; RENAMENX key newkey         // 如果新键不存在，重命名键
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; TYPE key                   // 返回key的数据类型
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Redis 字符串命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; SET key value                  // 此命令设置指定键的值。
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; GET key                        // 得到键的值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; GETRANGE key start end         // 得到key 上字符串的子串&lt;span class="o"&gt;(&lt;/span&gt;索引&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; GETSET key value                // 先得到旧值,再设置新值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; GETBIT key offset              // 返回在键处存储的字符串值中偏移处的位值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; MGET key&lt;span class="o"&gt;[&lt;/span&gt;key1&lt;span class="o"&gt;]&lt;/span&gt;                //    获取所有给定键的值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; SETBIT key offset value        // 存储在键上的字符串值中设置或清除偏移处的位
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; SETEX key seconds value            //   使用键和到期时间来设置值&lt;span class="o"&gt;(&lt;/span&gt;同时把两个都设置了&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; SETNX key value                 // 设置键的值，仅当键不存在时
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; SETRANGE key offset value       // 在指定偏移处开始的键处覆盖字符串的一部分
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; STRLEN key                        // 获取key中值的长度
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; MSET key value &lt;span class="o"&gt;[&lt;/span&gt;key value …&lt;span class="o"&gt;]&lt;/span&gt;       // 为多个key 设置 值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; MSETNX key value &lt;span class="o"&gt;[&lt;/span&gt;key value …&lt;span class="o"&gt;]&lt;/span&gt;        // 为多个键分别设置它们的值，仅当键不存在时
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; PSETEX key milliseconds value       // 设置键的值和到期时间&lt;span class="o"&gt;(&lt;/span&gt;以毫秒为单位&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; INCR key                        // 将键的整数值增加1
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; INCRBY key  increment             //  将键的整数值按给定的数值增加
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; INCRBYFLOAT key increment          // 将键的整数值按给定的数值增加
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; DECR key                           //  将键的整数值减1
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; DECRBY key decrement              //  按给定数值减少键的整数值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; APPEND key value                 //     将指定值附加到键
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Redis 哈希命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HMGET key field1 &lt;span class="o"&gt;[&lt;/span&gt;field2&lt;span class="o"&gt;]&lt;/span&gt;                      // 获取所有给定哈希字段的值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HMSET key field1 value1 &lt;span class="o"&gt;[&lt;/span&gt;field2 value2 &lt;span class="o"&gt;]&lt;/span&gt;       // 为多个哈希字段分别设置它们的值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HSET key field value                         // 设置散列字段的字符串值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HSETNX key field value                         //   仅当字段不存在时，才设置散列字段的值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HLEN key                                      // 获取散列中的字段数量
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HKEYS key                                   // 获取哈希中的所有字段
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HINCRBY key field increment                  //     将哈希字段的整数值按给定数字增加
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HINCRBYFLOAT key field increment               // 将哈希字段的浮点值按给定数值增加
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HGETALL key                                   // 获取存储在指定键的哈希中的所有字段和值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HGET key field                              // 获取存储在指定键的哈希字段的值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HEXISTS key field                            // 判断是否存在散列字段
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HDEL key field2 &lt;span class="o"&gt;[&lt;/span&gt;field2&lt;span class="o"&gt;]&lt;/span&gt;                       // 删除一个或多个哈希字段
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; HVALS key                                   // 获取哈希中的所有值
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Redis 列表命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; BLPOP key1 &lt;span class="o"&gt;[&lt;/span&gt;key2 &lt;span class="o"&gt;]&lt;/span&gt; timeout          // 删除并获取列表中的第一个元素，或阻塞，直到有一个元素可用
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; BRPOP key1 &lt;span class="o"&gt;[&lt;/span&gt;key2 &lt;span class="o"&gt;]&lt;/span&gt; timeout           //     删除并获取列表中的最后一个元素，或阻塞，直到有一个元素可用
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LINDEX key index                 // 通过其索引从列表获取元素
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LLEN key                           //   获取列表的长度
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LINSERT key BEFORE/AFTER pivot value  // 在列表中的另一个元素之前或之后插入元素
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LPOP key                           // 删除并获取列表中的第一个元素
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LPUSH key value1 &lt;span class="o"&gt;[&lt;/span&gt;value2&lt;span class="o"&gt;]&lt;/span&gt;            //将一个或多个值添加到列表
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; BRPOPLPUSH &lt;span class="nb"&gt;source&lt;/span&gt; destination timeout   // 从列表中弹出值，将其推送到另一个列表并返回它&lt;span class="p"&gt;;&lt;/span&gt; 或阻塞，直到一个可用
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; RPOP key                             // 删除并获取列表中的最后一个元素
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; RPUSH key value1 &lt;span class="o"&gt;[&lt;/span&gt;value2&lt;span class="o"&gt;]&lt;/span&gt;           //将一个或多个值附加到列表
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; RPUSHX key value                     //仅当列表存在时才将值附加到列表
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; RPOPLPUSH &lt;span class="nb"&gt;source&lt;/span&gt; destination        // 删除列表中的最后一个元素，将其附加到另一个列表并返回
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LREM key count value                 //     从列表中删除元素
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LSET key index value            // 通过索引在列表中设置元素的值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LTRIM key start stop             // 修剪列表的指定范围
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LPUSHX key value                  //仅当列表存在时，才向列表添加值
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt; LRANGE key start stop          // 从列表中获取一系列元素
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;Redis 集合命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SADD key member1 &lt;span class="o"&gt;[&lt;/span&gt;member2&lt;span class="o"&gt;]&lt;/span&gt;         //将一个或多个成员添加到集合
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SCARD key                           // 获取集合中的成员数
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SDIFF key1 &lt;span class="o"&gt;[&lt;/span&gt;key2&lt;span class="o"&gt;]&lt;/span&gt;                    //    减去多个集合
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SDIFFSTORE destination key1 &lt;span class="o"&gt;[&lt;/span&gt;key2&lt;span class="o"&gt;]&lt;/span&gt;    // 减去多个集并将结果集存储在键中
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SINTER key1 &lt;span class="o"&gt;[&lt;/span&gt;key2&lt;span class="o"&gt;]&lt;/span&gt;                    // 集合相交
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SINTERSTORE destination key1 &lt;span class="o"&gt;[&lt;/span&gt;key2&lt;span class="o"&gt;]&lt;/span&gt;   // 交叉多个集合并将结果集存储在键中
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SISMEMBER key member                  // 判断确定给定值是否是集合的成员
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SMOVE &lt;span class="nb"&gt;source&lt;/span&gt; destination member        //将成员从一个集合移动到另一个集合
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SPOP key                               // 从集合中删除并返回随机成员
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SRANDMEMBER key &lt;span class="o"&gt;[&lt;/span&gt;count&lt;span class="o"&gt;]&lt;/span&gt;                //  从集合中获取一个或多个随机成员
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SREM key member1 &lt;span class="o"&gt;[&lt;/span&gt;member2&lt;span class="o"&gt;]&lt;/span&gt;             // 从集合中删除一个或多个成员
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SUNION key1 &lt;span class="o"&gt;[&lt;/span&gt;key2&lt;span class="o"&gt;]&lt;/span&gt;                  // 添加多个集合
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SUNIONSTORE destination key1 &lt;span class="o"&gt;[&lt;/span&gt;key2&lt;span class="o"&gt;]&lt;/span&gt;   // 添加多个集并将结果集存储在键中
+&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1:6379&amp;gt;  SSCAN key cursor &lt;span class="o"&gt;[&lt;/span&gt;MATCH pattern&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt;COUNT count&lt;span class="o"&gt;]&lt;/span&gt;  //     递增地迭代集合中的元素
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Redis"></category></entry><entry><title>MongoDB学习笔记(A)</title><link href="http://www.njcx.bid/posts/C5.html" rel="alternate"></link><published>2017-04-03T10:20:00+03:00</published><updated>2017-04-03T10:20:00+03:00</updated><author><name>nJcx</name></author><id>tag:www.njcx.bid,2017-04-03:/posts/C5.html</id><summary type="html">&lt;p&gt;记录一下自己学到的东西&lt;/p&gt;</summary><content type="html">&lt;h4&gt;介绍&lt;/h4&gt;
+&lt;p&gt;Mongodb的3大元素:数据库(db),集合(collection),文档(document),"数据库"还是对应关系数据库中的"数据库",其中"集合"就是对应关系数据库中的"表"，"文档"对应"记录"。&lt;/p&gt;
+&lt;p&gt;| RDBMS | MongoDB |
+| --------   | -----:   | :----: |
+| Database  | Database |
+|Table  | Collection |
+| Tuple/Row | Document|
+|column | Field |
+| Table Join    | Embedded Documents | 
+| Primary Key   | Primary Key (Default key _id provided by mongodb itself)|&lt;/p&gt;
+&lt;p&gt;数据库服务器和客户端&lt;/p&gt;
+&lt;table class="table table-hover table-striped"&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;mysql&lt;/th&gt;
+&lt;th align="right"&gt;oracle&lt;/th&gt;
+&lt;th align="center"&gt;mongodb&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Mysqld&lt;/td&gt;
+&lt;td align="right"&gt;Oracle&lt;/td&gt;
+&lt;td align="center"&gt;mongod&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;mysql&lt;/td&gt;
+&lt;td align="right"&gt;sqlplus&lt;/td&gt;
+&lt;td align="center"&gt;mongo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;安装&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;centos/rhce : yum install mongodb-server -y
+
+debian/ubuntu : apt-get install mongodb-server -y
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;使用&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;创建数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; use njcx
+switched to db njcx
+&amp;gt; db
+njcx
+&amp;gt; 
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;查看数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; show dbs
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;删除数据库&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; use njcx
+switched to db njcx
+&amp;gt; db
+njcx
+&amp;gt; db.dropDatabase&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;创建集合(插入自动创建)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; db.njcx.insert&lt;span class="o"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;"name"&lt;/span&gt;:&lt;span class="s2"&gt;"njcx"&lt;/span&gt;&lt;span class="o"&gt;})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;创建集合(db.createCollection(name, options))&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;name 指定集合名称,opt 指定有关内存大小和索引选项(可选)&lt;/p&gt;
+&lt;p&gt;capped           Boolean  （可选）如果为true，则启用封顶集合。封顶集合是固定大小的集合，会自动覆盖最早的条目，当它达到其最大大小。如果指定true，则需要也指定尺寸参数。&lt;/p&gt;
+&lt;p&gt;autoIndexID     Boolean （可选）如果为true，自动创建索引_id字段的默认值是false。&lt;/p&gt;
+&lt;p&gt;size            number  （可选）指定最大大小字节封顶集合。如果封顶如果是 true，那么你还需要指定这个字段。&lt;/p&gt;
+&lt;p&gt;max             number  （可选）指定封顶集合允许在文件的最大数量。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; db.createCollection&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"tudou"&lt;/span&gt;, &lt;span class="o"&gt;{&lt;/span&gt; capped : true, autoIndexID : true, size : &lt;span class="m"&gt;6142800&lt;/span&gt;, max : &lt;span class="m"&gt;10000&lt;/span&gt; &lt;span class="o"&gt;}&lt;/span&gt; &lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;删除集合&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; db.njcx.drop&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="MongoDB"></category></entry></feed>
