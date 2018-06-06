@@ -1,11 +1,11 @@
-Title: SQL注入记录
-Date: 2017-05-22 13:20
-Modified: 2017-05-22 13:20
+Title: SSRF记录
+Date: 2017-05-23 13:20
+Modified: 2017-05-23 13:20
 Category: 安全
-Tags: XSS
-Slug: G11
+Tags: SSRF
+Slug: G12
 Authors: nJcx
-Summary: 记录一下学习SQL注入的心路
+Summary: 记录一下学习SSRF的心路
 
 #### 问题
 
