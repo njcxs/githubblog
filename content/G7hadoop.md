@@ -6,6 +6,7 @@ Tags: Hadoop
 Slug: G7
 Authors: nJcx
 Summary: Hadoop + Hbase + Hive +Spark 集群搭建实践
+Status: draft
 #### 介绍
 
 

@@ -5,6 +5,7 @@ Category: Django
 Tags: Django
 Slug: E1
 Authors: nJcx
+Status: draft
 Summary: Django的通用试图介绍
 
 

@@ -6,6 +6,7 @@ Tags: Pandas
 Slug: F12
 Authors: nJcx
 Summary: Pandas简明教程
+Status: draft
 ####介绍
 Series DataFrame
 ####开始

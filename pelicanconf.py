@@ -50,7 +50,7 @@ BOOTSTRAPIFY = {
 
 # Theme settings --------------------------------------------------------------
 
-THEME = '/home/njcx/githubblog/alchemy'
+THEME = '/Users/njcx/githubblog/alchemy'
 
 SITESUBTITLE = '身高1.85，单身，魔都，擅长Python,Golang,很重要的一件事是，单身'
 SITEIMAGE = '/images/profile.png width=200 height=200'

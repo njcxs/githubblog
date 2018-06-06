@@ -6,4 +6,5 @@ Tags: Python
 Slug: E10
 Authors: nJcx
 Summary: Python collections详解
+Status: draft
 ####开始
