@@ -34,7 +34,9 @@ Summary: 抓包和规则编写-NIDS
 
 #### NIDS规则的编写
 
-1，
+- PATH(HTTP)
 
-2，
+- UA(HTTP)
+
+- 
 
