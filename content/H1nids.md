@@ -46,5 +46,7 @@ Summary: 抓包和nids规则编写
 
 - UA(HTTP)
 
+通过bro分析http请求中的UA头
+
  Mozilla/5.0 (compatible, GoLismero/2.0 The Web Knife; +https://github.com/golismero/golismero)
 
