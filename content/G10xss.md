@@ -6,6 +6,6 @@ Tags: XSS
 Slug: G10
 Authors: nJcx
 Summary: 记录一下XSS的学习心路
-
+Status: draft
 #### 问题
 

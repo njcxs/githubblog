@@ -52,7 +52,7 @@ BOOTSTRAPIFY = {
 
 THEME = '/Users/njcx/githubblog/alchemy'
 
-SITESUBTITLE = '身高1.85，单身，魔都，擅长Python,Golang,很重要的一件事是，单身'
+SITESUBTITLE = '身高1.85，魔都，酗酒，抽烟，纹身，无恶不作'
 SITEIMAGE = '/images/profile.png width=200 height=200'
 DESCRIPTION = 'Linux重度用户，Python从业人员，个人小博客，欢迎访问'
 

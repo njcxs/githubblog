@@ -6,6 +6,6 @@ Tags: XXE
 Slug: G13
 Authors: nJcx
 Summary: 记录一下学习XXE的心路
-
+Status: draft
 #### 问题
 

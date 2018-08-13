@@ -6,5 +6,5 @@ Tags: 安全配置错误
 Slug: G15
 Authors: nJcx
 Summary: 记录一下学习owasp“安全配置错误”的心路
-
+Status: draft
 #### 问题

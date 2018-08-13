@@ -6,5 +6,5 @@ Tags: CSRF
 Slug: G14
 Authors: nJcx
 Summary: 记录一下学习CSRF的心路
-
+Status: draft
 #### 问题

@@ -6,6 +6,6 @@ Tags: SSRF
 Slug: G12
 Authors: nJcx
 Summary: 记录一下学习SSRF的心路
-
+Status: draft
 #### 问题
 
