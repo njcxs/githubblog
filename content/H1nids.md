@@ -9,7 +9,7 @@ Summary: 抓包和nids规则编写
 
 #### 两种抓包方式
 
-######## 1、来自客户端的抓包方式
+ 1、来自客户端的抓包方式
 
 - 工具：wireshark
 
@@ -19,7 +19,7 @@ Summary: 抓包和nids规则编写
 
 	![ml1](../images/WX20180813-161129.png)
 
-2，来自服务端的抓包方式
+2、来自服务端的抓包方式
 
 - 工具: bro
 
@@ -33,12 +33,18 @@ Summary: 抓包和nids规则编写
 
 #### 目的
 
-- 确定指定字段包含或者等于指定内容。
+- 确定指定字段包含或者等于指定内容,用于nids相关规则编写。
 
 #### NIDS规则的编写
 
 - PATH(HTTP)
 
+通过bro抓取分析Url里面的特征
+
+/etc/passwd?format=%&xss="><script>alert('GoLismero');</script>&traversal=../../&sql=' OR 1;
+
+
 - UA(HTTP)
 
+ Mozilla/5.0 (compatible, GoLismero/2.0 The Web Knife; +https://github.com/golismero/golismero)
 
