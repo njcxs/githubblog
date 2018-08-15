@@ -143,6 +143,7 @@ User-Agent: 68.0.3440.106
 
 - 端口扫描
 
+来自bro  conn.log 的conn_state字段
 
 ```bash
 
@@ -156,9 +157,9 @@ RSTO	建立连接，发起者中止（发送RST）。
 RSTR	响应者发送了RST。
 RSTOS0	发起者发送了一个SYN后跟一个RST，未看到来自响应者的SYN-ACK。
 RSTRH	响应者发送了一个SYN ACK后跟一个RST，未见过发起人的SYN。
-SH	发起者发送了一个SYN后跟一个FIN，我们从未看到来自响应者的SYN ACK（因此连接是“半”打开）。
+SH	发起者发送了一个SYN后跟一个FIN，我们从未看到来自响应者的SYN ACK，连接是“半”打开状态。
 SHR	响应者发送了一个SYN ACK后跟一个FIN，我们从未看到来自发起者的SYN。
-OTH	没有看到SYN，没有关闭全部连接
+OTH	没有看到SYN，没有关闭全部连接。
 
 ```
 
