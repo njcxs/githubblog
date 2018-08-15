@@ -141,12 +141,14 @@ var _hmt = _hmt || [];
 <li>PATH(HTTP)</li>
 </ul>
 <p>通过bro抓取分析Url里面的特征</p>
-<p>/etc/passwd?format=%&amp;xss="&gt;<script>alert('GoLismero');</script>&amp;traversal=../../&amp;sql=' OR 1;</p>
+<div class="highlight"><pre><span></span><span class="err">/etc/passwd?format=%&amp;xss="&gt;&lt;script&gt;alert('GoLismero');&lt;/script&gt;&amp;traversal=../../&amp;sql=' OR 1;</span>
+</pre></div>
 <ul>
 <li>UA(HTTP)</li>
 </ul>
 <p>通过bro分析http请求中的UA头</p>
-<p>Mozilla/5.0 (compatible, GoLismero/2.0 The Web Knife; +https://github.com/golismero/golismero)</p>
+<div class="highlight"><pre><span></span> Mozilla/5.0 <span class="o">(</span>compatible, GoLismero/2.0 The Web Knife<span class="p">;</span> +https://github.com/golismero/golismero<span class="o">)</span>
+</pre></div>
   </div>
 </article>
 <div id="cyReward" role="cylabs" data-use="reward" style="text-align:center;"></div>

@@ -41,12 +41,18 @@ Summary: 抓包和nids规则编写
 
 通过bro抓取分析Url里面的特征
 
+```javascript
+
 /etc/passwd?format=%&xss="><script>alert('GoLismero');</script>&traversal=../../&sql=' OR 1;
 
+```
 
 - UA(HTTP)
 
 通过bro分析http请求中的UA头
 
+```bash
+
  Mozilla/5.0 (compatible, GoLismero/2.0 The Web Knife; +https://github.com/golismero/golismero)
 
+```
