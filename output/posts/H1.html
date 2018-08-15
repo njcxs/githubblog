@@ -213,6 +213,27 @@ User-Agent: <span class="m">68</span>.0.3440.106
         <span class="nt">&lt;desc</span> <span class="na">affected_target=</span><span class="s">"Web Application"</span><span class="nt">&gt;</span>Netsparker Scanner<span class="nt">&lt;/desc&gt;</span>
     <span class="nt">&lt;/rule&gt;</span>
 </pre></div>
+<ul>
+<li>端口扫描</li>
+</ul>
+<div class="highlight"><pre><span></span>S0  看到连接尝试，没有回复。
+S1  已建立连接，未终止。
+SF  正常建立和终止。请注意，这与状态S1的符号相同。您可以将两者分开，因为对于S1，摘要中不会有任何字节计数，而对于SF则会有。
+REJ 连接尝试被拒绝。
+S2  已建立连接，并且看到发起人关闭尝试（但没有来自响应者的回复）。
+S3  建立连接并通过响应者查看关闭尝试（但没有来自发起者的回复）。
+RSTO    建立连接，发起者中止（发送RST）。
+RSTR    响应者发送了RST。
+RSTOS0  发起者发送了一个SYN后跟一个RST，未看到来自响应者的SYN-ACK。
+RSTRH   响应者发送了一个SYN ACK后跟一个RST，未见过发起人的SYN。
+SH  发起者发送了一个SYN后跟一个FIN，我们从未看到来自响应者的SYN ACK（因此连接是“半”打开）。
+SHR 响应者发送了一个SYN ACK后跟一个FIN，我们从未看到来自发起者的SYN。
+OTH 没有看到SYN，只是中途流量（以后没有关闭的“部分连接”）。
+</pre></div>
+<p>3次握手，建立tcp连接</p>
+<p><img alt="ml1" class="img-fluid" src="../images/7b652.png"/></p>
+<p>4次挥手，断开连接</p>
+<p><img alt="ml1" class="img-fluid" src="../images/0ba8.png"/></p>
   </div>
 </article>
 <div id="cyReward" role="cylabs" data-use="reward" style="text-align:center;"></div>
