@@ -141,7 +141,7 @@ var _hmt = _hmt || [];
 <li>PATH(HTTP)</li>
 </ul>
 <p>通过bro抓取分析Url里面的特征</p>
-<div class="highlight"><pre><span></span><span class="err">/etc/passwd?format=%&amp;xss="&gt;&lt;script&gt;alert('GoLismero');&lt;/script&gt;&amp;traversal=../../&amp;sql=' OR 1;</span>
+<div class="highlight"><pre><span></span>/etc/passwd?format<span class="o">=</span>%<span class="p">&amp;</span><span class="nv">xss</span><span class="o">=</span><span class="s2">"&gt;&lt;script&gt;alert('GoLismero');&lt;/script&gt;&amp;traversal=../../&amp;sql=' OR 1;</span>
 </pre></div>
 <ul>
 <li>UA(HTTP)</li>

@@ -41,7 +41,7 @@ Summary: 抓包和nids规则编写
 
 通过bro抓取分析Url里面的特征
 
-```javascript
+```bash
 
 /etc/passwd?format=%&xss="><script>alert('GoLismero');</script>&traversal=../../&sql=' OR 1;
 
