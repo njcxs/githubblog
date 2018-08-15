@@ -47,6 +47,27 @@ Summary: 抓包和nids规则编写
 
 ```
 
+对应的规则
+
+```xml
+
+    <rule rule_id="NIDS_SCANNER1" type="Detection" auther_IPA="">
+        <rule_name>GoLismero Scanner</rule_name>
+        <harm_level>medium</harm_level>
+        <block>False</block>
+        <threshold/>
+        <freq_designate/>
+        <pre_check part="path">GoLismero</pre_check>
+        <check_list>
+            <path type="INCL"><![CDATA[GoLismero]]>/</path>
+        </check_list>
+        <alert_email/>
+        <action/>
+        <desc affected_target="Web Application">检测到GoLismero扫描</desc>
+    </rule>
+
+```
+
 - UA(HTTP)
 
 通过bro分析http请求中的UA头
@@ -54,5 +75,51 @@ Summary: 抓包和nids规则编写
 ```bash
 
  Mozilla/5.0 (compatible, GoLismero/2.0 The Web Knife; +https://github.com/golismero/golismero)
+
+```
+
+对应的规则
+
+```xml
+
+    <rule rule_id="NIDS_SCANNER2" type="Detection" auther_IPA="">
+        <rule_name>GoLismero Traffic</rule_name>
+        <harm_level>medium</harm_level>
+        <block>False</block>
+        <threshold/>
+        <freq_designate/>
+        <pre_check part="type">http</pre_check>
+        <check_list>
+            <http.request.headers.user-agent type="REGEX">
+                <![CDATA[GoLismero]]></http.request.headers.user-agent>
+        </check_list>
+        <alert_email/>
+        <action/>
+        <desc affected_target="Web Application">GoLismero Scanner</desc>
+    </rule>
+```
+
+- 看看header里面有没有其他字段
+
+
+对应规则
+
+```xml
+
+
+    <rule rule_id="NIDS_SCANNER7" type="Detection" auther_IPA="">
+        <rule_name>Netsparker Scanner</rule_name>
+        <harm_level>medium</harm_level>
+        <block>False</block>
+        <threshold/>
+        <freq_designate/>
+        <pre_check part="http.request.headers.X-Scanner">Netsparker</pre_check>
+        <check_list>
+            <http.request.headers.X-Scanner type="INCL"><![CDATA[Netsparker]]></http.request.headers.X-Scanner>
+        </check_list>
+        <alert_email/>
+        <action/>
+        <desc affected_target="Web Application">Netsparker Scanner</desc>
+    </rule>
 
 ```
