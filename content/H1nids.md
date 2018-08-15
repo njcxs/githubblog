@@ -112,7 +112,6 @@ Connection: keep-alive
 
 X-Scanner: Netsparker
 
-Host: www.baidu.com
 Upgrade-Insecure-Requests: 1
 User-Agent: 68.0.3440.106 
 
