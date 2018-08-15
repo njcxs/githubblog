@@ -185,6 +185,19 @@ var _hmt = _hmt || [];
 <ul>
 <li>看看header里面有没有其他字段</li>
 </ul>
+<div class="highlight"><pre><span></span>GET / HTTP/1.1
+Accept: text/html,application/xhtml+xml,application/xml<span class="p">;</span><span class="nv">q</span><span class="o">=</span><span class="m">0</span>.9,image/webp,image/apng,*/*<span class="p">;</span><span class="nv">q</span><span class="o">=</span><span class="m">0</span>.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh<span class="p">;</span><span class="nv">q</span><span class="o">=</span><span class="m">0</span>.9
+Cache-Control: max-age<span class="o">=</span><span class="m">0</span>
+Connection: keep-alive
+
+X-Scanner: Netsparker
+
+Host: www.baidu.com
+Upgrade-Insecure-Requests: <span class="m">1</span>
+User-Agent: <span class="m">68</span>.0.3440.106 
+</pre></div>
 <p>对应规则</p>
 <div class="highlight"><pre><span></span>    <span class="nt">&lt;rule</span> <span class="na">rule_id=</span><span class="s">"NIDS_SCANNER7"</span> <span class="na">type=</span><span class="s">"Detection"</span> <span class="na">auther_IPA=</span><span class="s">""</span><span class="nt">&gt;</span>
         <span class="nt">&lt;rule_name&gt;</span>Netsparker Scanner<span class="nt">&lt;/rule_name&gt;</span>

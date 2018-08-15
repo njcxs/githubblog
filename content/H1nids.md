@@ -37,6 +37,7 @@ Summary: 抓包和nids规则编写
 
 #### NIDS规则的编写
 
+
 - PATH(HTTP)
 
 通过bro抓取分析Url里面的特征
@@ -100,6 +101,22 @@ Summary: 抓包和nids规则编写
 ```
 
 - 看看header里面有没有其他字段
+
+```bash
+GET / HTTP/1.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9
+Cache-Control: max-age=0
+Connection: keep-alive
+
+X-Scanner: Netsparker
+
+Host: www.baidu.com
+Upgrade-Insecure-Requests: 1
+User-Agent: 68.0.3440.106 
+
+```
 
 
 对应规则
