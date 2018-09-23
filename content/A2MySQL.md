@@ -6,6 +6,8 @@ Tags: MySQL
 Slug: A2
 Authors: nJcx
 Summary: 介绍一下linux下mysql主从复制搭建过程，记录一下学习过程
+Status: draft
+
 ##测试环境
 - kvm
 - ubuntu16.04 server x2

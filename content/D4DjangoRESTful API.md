@@ -6,6 +6,8 @@ Tags: Django
 Slug: D4
 Authors: nJcx
 Summary: 利用Django实现RESTful API,实践记录如下
+Status: draft
+
 ####介绍
 首先,什么是RESTful? 阮一峰大大写了两篇博文介绍的比较详尽
 

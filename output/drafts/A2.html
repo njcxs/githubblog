@@ -8,9 +8,9 @@
   <meta name="google-site-verification" content="GgupatpoZgdqsBlxEZoMqGAy3aXAFtXIrYged3SB6EA" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Authors | nJcx's Blog
+  <title>MySQL主从复制解决方案实践 | nJcx's Blog
 </title>
-  <link rel="canonical" href="http://www.njcx.bid/authors.html">
+  <link rel="canonical" href="http://www.njcx.bid/drafts/A2.html">
 
 
   <link rel="apple-touch-icon" href="http://www.njcx.bid/apple-touch-icon.png" sizes="180x180">
@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="http://www.njcx.bid/theme/css/pygments/emacs.min.css">
   <link rel="stylesheet" href="http://www.njcx.bid/theme/css/style.css">
 
+
+<meta name="description" content="介绍一下linux下mysql主从复制搭建过程，记录一下学习过程">
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -77,16 +79,58 @@ var _hmt = _hmt || [];
 
   <div class="main">
     <div class="container">
-      <h1>Authors
+      <h1>MySQL主从复制解决方案实践
 </h1>
       <hr>
-<table class="table table-bordered table-striped table-hover">
-  <tr>
-    <td><a href="http://www.njcx.bid/author/njcx.html">nJcx</a></td>
-    <td>34</td>
-  </tr>
-</table>
-    </div>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2016-01-02T10:20:00+03:00">
+        <i class="fa fa-clock-o"></i>
+        六 02 一月 2016
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="http://www.njcx.bid/category/linux.html">Linux</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="http://www.njcx.bid/author/njcx.html">nJcx</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="http://www.njcx.bid/tag/mysql.html">#MySQL</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <h2>测试环境</h2>
+<ul>
+<li>kvm</li>
+<li>ubuntu16.04 server x2</li>
+</ul>
+<p><img alt="mysql1" class="img-fluid" src="../images/mysql1.png"/></p>
+<h2>安装mysql</h2>
+<div class="highlight"><pre><span></span> apt-get install -y mysql-server
+</pre></div>
+<h2>配置</h2>
+<div class="highlight"><pre><span></span>mysql&gt;create user repl<span class="p">;</span> //创建新用户
+//repl用户必须具有REPLICATION SLAVE权限，除此之外没有必要添加不必要的权限，密码为mysql。说明一下192.168.0.%，这个配置是指明repl用户所在服务器，这里%是通配符，表示192.168.0.0-192.168.0.255的Server都可以以repl用户登陆主服务器。当然你也可以指定固定Ip。
+mysql&gt; GRANT REPLICATION SLAVE ON *.* TO <span class="s1">'repl'</span>@<span class="s1">'192.168.122.%'</span> IDENTIFIED BY <span class="s1">'123456'</span><span class="p">;</span>
+</pre></div>
+  </div>
+</article>
+<div id="cyReward" role="cylabs" data-use="reward" style="text-align:center;"></div>
+<!--PC和WAP自适应版-->
+<div id="SOHUCS" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysYUIjwy'; 
+var conf = 'prod_71b5e53cad0d27b5ed44fa5219b069b5'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cysYUIjwy"></script>    </div>
   </div>
 
   <footer class="footer">

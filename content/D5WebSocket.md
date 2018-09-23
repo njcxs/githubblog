@@ -6,6 +6,8 @@ Tags: Python
 Slug: D5
 Authors: nJcx
 Summary: Python websocket 探秘,实践记录如下
+Status: draft
+
 ####介绍
 HTTP 协议是一种无状态协议，只能由客户端向服务器发出请求，由服务器响应。如果服务端想对客服端发出请求该怎么办？比如，向客户端推送消息。长久以来, 创建实现客户端和用户端之间双工通讯都会造成HTTP轮询的滥用: 客户端向主机不断发送不同的HTTP呼叫来进行询问。这会导致一系列的问题：
 

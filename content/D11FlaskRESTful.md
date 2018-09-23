@@ -6,6 +6,8 @@ Tags: Flask
 Slug: D11
 Authors: nJcx
 Summary: Flask-RESTful 探秘
+Status: draft
+
 ####介绍
 首先,什么是RESTful? 阮一峰大大写了两篇博文介绍的比较详尽
 

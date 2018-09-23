@@ -8,9 +8,9 @@
   <meta name="google-site-verification" content="GgupatpoZgdqsBlxEZoMqGAy3aXAFtXIrYged3SB6EA" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Authors | nJcx's Blog
+  <title>利用Django实现RESTful API | nJcx's Blog
 </title>
-  <link rel="canonical" href="http://www.njcx.bid/authors.html">
+  <link rel="canonical" href="http://www.njcx.bid/drafts/D4.html">
 
 
   <link rel="apple-touch-icon" href="http://www.njcx.bid/apple-touch-icon.png" sizes="180x180">
@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="http://www.njcx.bid/theme/css/pygments/emacs.min.css">
   <link rel="stylesheet" href="http://www.njcx.bid/theme/css/style.css">
 
+
+<meta name="description" content="利用Django实现RESTful API,实践记录如下">
 <script>
 var _hmt = _hmt || [];
 (function() {
@@ -77,16 +79,59 @@ var _hmt = _hmt || [];
 
   <div class="main">
     <div class="container">
-      <h1>Authors
+      <h1>利用Django实现RESTful API
 </h1>
       <hr>
-<table class="table table-bordered table-striped table-hover">
-  <tr>
-    <td><a href="http://www.njcx.bid/author/njcx.html">nJcx</a></td>
-    <td>34</td>
-  </tr>
-</table>
-    </div>
+<article class="article">
+  <header>
+    <ul class="list-inline">
+      <li class="list-inline-item text-muted" title="2017-04-09T10:20:00+03:00">
+        <i class="fa fa-clock-o"></i>
+        日 09 四月 2017
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="http://www.njcx.bid/category/django.html">Django</a>
+      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-user-o"></i>
+        <a href="http://www.njcx.bid/author/njcx.html">nJcx</a>      </li>
+      <li class="list-inline-item">
+        <i class="fa fa-files-o"></i>
+        <a href="http://www.njcx.bid/tag/django.html">#Django</a>      </li>
+    </ul>
+  </header>
+  <div class="content">
+    <h4>介绍</h4>
+<p>首先,什么是RESTful? 阮一峰大大写了两篇博文介绍的比较详尽</p>
+<p><a href="http://www.ruanyifeng.com/blog/2011/09/restful">理解RESTful架构</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">RESTful API 设计指南</a></p>
+<h4>django 之 RESTful</h4>
+<p>浏览器向http服务器发出请求,服务器返回一个html,然后浏览器渲染这个html,然后，大家就能看到网页了，而RESTful是返回json、xml、yaml、csv等序列化文件，作为resource的载体，供前端或者app解析。django实现RESTful，一般使用djangorestframework模块</p>
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">djangorestframework</span>
+</pre></div>
+<p>然后在settings.py中添加 rest_framework</p>
+<div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="o">...</span>
+    <span class="s1">'rest_framework'</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+<p>到这，djangorestframework 就装上的了。</p>
+  </div>
+</article>
+<div id="cyReward" role="cylabs" data-use="reward" style="text-align:center;"></div>
+<!--PC和WAP自适应版-->
+<div id="SOHUCS" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cysYUIjwy'; 
+var conf = 'prod_71b5e53cad0d27b5ed44fa5219b069b5'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+<script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cysYUIjwy"></script>    </div>
   </div>
 
   <footer class="footer">
