@@ -6,6 +6,7 @@ Tags: JavaScript
 Slug: E12
 Authors: nJcx
 Summary: JavaScript 数组方法详解
+Status: draft
 
 ####开始
 

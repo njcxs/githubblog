@@ -6,6 +6,8 @@ Tags: JavaScript
 Slug: E11
 Authors: nJcx
 Summary: JavaScript 字符串方法详解
+Status: draft
+
 ####开始
 ```javascript
 str.anchor                str.big                   str.blink
