@@ -102,7 +102,35 @@ var _hmt = _hmt || [];
     </ul>
   </header>
   <div class="content">
-    <h5>两种抓包方式</h5>
+    <h5>介绍</h5>
+<p>Lua 是一脚本语言，巴西人所开发。由标准C开发，方便嵌入应用程序中。几乎可以在所有操作系统和平台上都可以编译，运行。</p>
+<h4>安装</h4>
+<div class="highlight"><pre><span></span>$ brew install lua
+<span class="c1"># yum install lua -y</span>
+$ sudo apt-get -y install lua
+</pre></div>
+<p>包管理</p>
+<div class="highlight"><pre><span></span>$ brew install luarocks
+</pre></div>
+<p>常用包</p>
+<div class="highlight"><pre><span></span>luarocks install luasocket
+luarocks install luasql-sqlite3
+luarocks install lpeg
+luarocks install lzlib
+luarocks install luafilesystem
+luarocks install luasec
+luarocks install md5
+luarocks install luacurl
+luarocks install luasql-mysql 
+luarocks install lua-cjson
+</pre></div>
+<h4>hello world</h4>
+<p>老规矩</p>
+<div class="highlight"><pre><span></span><span class="cp">#!/usr/local/bin/lua</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Hello World！"</span><span class="p">)</span>
+</pre></div>
+<h4>数据结构</h4>
   </div>
 </article>
 <div id="cyReward" role="cylabs" data-use="reward" style="text-align:center;"></div>
