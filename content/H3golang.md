@@ -57,7 +57,7 @@ func main() {
 
 - 字符串类型
 
-```golang
+```go
     var b string ='demo'
     c :='godemo'
 ```
