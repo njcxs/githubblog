@@ -45,12 +45,13 @@ func main() {
 ```
 ####  数据结构
 
+
 - 布尔型
+
 ```go
     var b bool = true
     c := false
-
-    ```
+```
 - 数字类型
 整型 int 和浮点型 float32、float64，Go 语言支持整型和浮点型数字，并且原生支持复数，其中位的运算采用补码。
 
@@ -59,7 +60,6 @@ func main() {
     ```go
     var b string  = ' demo'
     c := 'godemo'
-    
     ```
 
 - 指针类型（Pointer）
@@ -77,5 +77,4 @@ func main() {
 - 接口类型（interface）
 
 - Map 类型
-
 
