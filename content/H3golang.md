@@ -34,7 +34,7 @@ yum install golang -y
 #### 向世界打招呼
 
 
-```golang
+```go
 package main 
 
 import 'fmt'
@@ -48,7 +48,7 @@ func main() {
 
 - 布尔型
 
-```golang
+```go
     var b bool = true
     c := false
 ```
@@ -57,7 +57,7 @@ func main() {
 
 - 字符串类型
 
-```golang
+```go
     var b string = 'demo'
     c :=  'godemo'
 ```
