@@ -57,10 +57,10 @@ func main() {
 
 - 字符串类型
 
-    ```go
+```go
     var b string  = ' demo'
     c := 'godemo'
-    ```
+```
 
 - 指针类型（Pointer）
 
