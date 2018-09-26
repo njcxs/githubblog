@@ -131,13 +131,53 @@ var _hmt = _hmt || [];
     <span class="nx">c</span> <span class="o">:=</span> <span class="kc">false</span>
 </pre></div>
 <ul>
-<li>
-<p>数字类型
-整型 int 和浮点型 float32、float64，Go 语言支持整型和浮点型数字，并且原生支持复数，其中位的运算采用补码。</p>
+<li>数字类型
+整型 int 和浮点型 float32、float64，Go 语言支持整型和浮点型数字，支持复数，位运算采用补码。<ul>
+<li>uint8
+无符号 8 位整型 (0 到 255)</li>
+<li>uint16
+  无符号 16 位整型 (0 到 65535)</li>
+<li>uint32
+无符号 32 位整型 (0 到 4294967295)</li>
+<li>uint64
+无符号 64 位整型 (0 到 18446744073709551615)</li>
+<li>int8
+有符号 8 位整型 (-128 到 127)</li>
+<li>int16
+有符号 16 位整型 (-32768 到 32767)</li>
+<li>int32
+有符号 32 位整型 (-2147483648 到 2147483647)</li>
+<li>int64
+有符号 64 位整型 (-9223372036854775808 到 9223372036854775807)</li>
+<li>float32
+IEEE-754 32位浮点型数</li>
+<li>float64
+IEEE-754 64位浮点型数</li>
+<li>complex64
+32 位实数和虚数</li>
+<li>complex128
+64 位实数和虚数</li>
+<li>byte
+类似 uint8</li>
+<li>rune
+类似 int32</li>
+<li>uint
+32 或 64 位</li>
+<li>int
+与 uint 一样大小</li>
+<li>uintptr
+无符号整型，用于存放一个指针</li>
+</ul>
 </li>
-<li>
-<p>字符串类型</p>
-</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">a</span> <span class="p">=</span> <span class="mi">1</span>
+
+<span class="kd">var</span> <span class="nx">b</span> <span class="kt">int</span> <span class="p">=</span> <span class="mi">2</span>
+
+<span class="nx">c</span> <span class="o">:=</span><span class="mi">3</span>
+</pre></div>
+<ul>
+<li>字符串类型</li>
 </ul>
 <div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">b</span> <span class="kt">string</span> <span class="p">=</span> <span class="s">"demo"</span>
     <span class="nx">c</span> <span class="o">:=</span>  <span class="s">"godemo"</span>
