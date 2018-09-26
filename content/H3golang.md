@@ -138,6 +138,7 @@ arr := [...]int{1:1,0:2}
 
 指针类型就是一个变量，里面存的是另一个变量的地址
 
+
 ```go
 var b *int
 
@@ -149,6 +150,22 @@ b := &a
 
 ```
 
+```go
+
+package main 
+
+import "fmt"
+
+func main(){
+
+	var a int = 1
+	
+	var b *int =&a
+
+	fmt.Println(*b)
+}
+
+```
 - 结构体类型(struct)
 
 - Channel 类型
