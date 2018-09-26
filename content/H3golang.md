@@ -37,10 +37,10 @@ yum install golang -y
 ```go
 package main 
 
-import 'fmt'
+import "fmt"
 
 func main() {
-    fmt.Println('Hello world!')
+    fmt.Println("Hello world!")
 }
 ```
 ####  数据结构
@@ -58,8 +58,8 @@ func main() {
 - 字符串类型
 
 ```go
-    var b string = 'demo'
-    c :=  'godemo'
+    var b string = "demo"
+    c :=  "godemo"
 ```
 
 - 指针类型（Pointer）
