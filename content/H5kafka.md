@@ -78,7 +78,7 @@ typesafe: http://repo.typesafe.com/typesafe/ivy-releases/, [organization]/[modul
 
 ```bash
 
-git clone  git@github.com:njcx/kafka-manage-bin.git
+git clone  https://github.com/njcx/kafka-manage-bin.git
 
 ```
 
