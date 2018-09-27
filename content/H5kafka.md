@@ -84,4 +84,34 @@ git clone  https://github.com/njcx/kafka-manage-bin.git
 
 ```
 
+#### ZooKeeper
+
+默认端口2181
+
+```bash
+
+# cd /opt && wget http://mirrors.hust.edu.cn/apache/zookeeper/stable/zookeeper-3.4.12.tar.gz
+
+# tar -zxvf zookeeper-3.4.12.tar.gz
+
+# cd zookeeper-3.4.12/conf 
+
+# cp zoo_sample.cfg zoo.cfg && cd ../bin
+ 
+# ./zkServer.sh start
+
+```
+
+#### Kafka 
+
+```bash
+
+# cd kafka_2.12-1.0.0/bin
+
+# ./kafka-server-start.sh  -daemon ../config/server.properties
+
+
+```
+
+
 
