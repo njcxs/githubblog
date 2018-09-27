@@ -52,7 +52,7 @@ export PATH=\$PATH:\$SCALA_HOME/bin \n\
 配置sbt 国内源
 
 ```bash 
-# cd ~ && vim .sbt/repositories
+#cd ~ && vim .sbt/repositories
 
 ```
 
@@ -68,8 +68,9 @@ typesafe: http://repo.typesafe.com/typesafe/ivy-releases/, [organization]/[modul
 
 ```bash
 
-# git clone https://github.com/yahoo/kafka-manager
-#  cd kafka-manager && ./ sbt clean dist
+#git clone https://github.com/yahoo/kafka-manager
+
+#cd kafka-manager && ./ sbt clean dist
 
 ```
 
