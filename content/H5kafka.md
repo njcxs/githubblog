@@ -72,6 +72,8 @@ typesafe: http://repo.typesafe.com/typesafe/ivy-releases/, [organization]/[modul
 
 #cd kafka-manager && ./ sbt clean dist
 
+# cd target/universal/     可执行文件所在目录
+
 ```
 
 有点慢，搞杯茶喝喝，3杯茶都喝了,还是找个已经编译好的吧
