@@ -74,3 +74,12 @@ typesafe: http://repo.typesafe.com/typesafe/ivy-releases/, [organization]/[modul
 
 ```
 
+有点慢，搞杯茶喝喝，3杯茶都喝了,还是找个已经编译好的吧
+
+```bash
+
+git clone  git@github.com:njcx/kafka-manage-bin.git
+
+```
+
+
