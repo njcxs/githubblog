@@ -64,6 +64,7 @@ aliyun: http://maven.aliyun.com/nexus/content/groups/public
 typesafe: http://repo.typesafe.com/typesafe/ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
 
 ```
+编译
 
 ```bash
 
