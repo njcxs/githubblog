@@ -114,4 +114,19 @@ git clone  https://github.com/njcx/kafka-manage-bin.git
 ```
 
 
+#### kafka-manage 
+
+```bash
+# /opt/kafka-manage-bin/bin
+
+# nohup ./kafka-manager >> kafka-manager.log  2>&1 &
+
+```
+
+
+#### 管理
+
+
+
+
 
