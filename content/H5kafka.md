@@ -47,3 +47,28 @@ export PATH=\$PATH:\$SCALA_HOME/bin \n\
 
 
 
+安装 kafka-manage
+
+配置sbt 国内源
+
+```bash 
+# cd ~ && vim .sbt/repositories
+
+```
+
+```ini
+
+[repositories]
+local
+aliyun: http://maven.aliyun.com/nexus/content/groups/public
+typesafe: http://repo.typesafe.com/typesafe/ivy-releases/, [organization]/[module]/(scala_[scalaVersion]/)(sbt_[sbtVersion]/)[revision]/[type]s/[artifact](-[classifier]).[ext], bootOnly
+
+```
+
+```bash
+
+# git clone https://github.com/yahoo/kafka-manager
+#  cd kafka-manager && ./ sbt clean dist
+
+```
+
