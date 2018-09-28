@@ -19,3 +19,15 @@ Shell 是一个用C语言编写的程序，它是用户使用Linux的桥梁。Sh
 Bourne Shell（/usr/bin/sh或/bin/sh）
 Bourne Again Shell（/bin/bash）
 ```
+
+#### 向世界打招呼
+
+```bash 
+
+# touch demo.sh && echo " echo 'hello its me'" >> demo.sh
+ 
+# sh demo.sh 
+
+# hello its me
+```
+
