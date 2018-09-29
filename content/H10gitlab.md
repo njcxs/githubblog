@@ -24,6 +24,19 @@ enabled=1
 # yum install gitlab-ce
 ```
 
+#### 配置
+
+```bash
+
+vim /etc/gitlab/gitlab.rb
+
+```
+
+external_url 'https://gitlab.xxx.com'
+
+改为ip 或者域名
+
+
 #### 遇到的问题
 
 页面出现502，通过调高硬件配置，解决该问题
