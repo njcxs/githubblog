@@ -23,3 +23,7 @@ enabled=1
 # yum makecache
 # yum install gitlab-ce
 ```
+
+#### 遇到的问题
+
+页面出现502，通过调高硬件配置，解决该问题
