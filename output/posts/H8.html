@@ -103,6 +103,14 @@ var _hmt = _hmt || [];
   </header>
   <div class="content">
     <h4>安装</h4>
+<p>方法1：</p>
+<div class="highlight"><pre><span></span><span class="c1"># sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo</span>
+
+<span class="c1">#sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key</span>
+
+<span class="c1"># yum install jenkins</span>
+</pre></div>
+<p>方法2：</p>
 <div class="highlight"><pre><span></span><span class="c1"># wget https://pkg.jenkins.io/redhat-stable/jenkins-2.138.1-1.1.noarch.rpm</span>
 
 <span class="c1"># rpm -vih jenkins-2.138.1-1.1.noarch.rpm</span>

@@ -8,7 +8,18 @@ Authors: nJcx
 Summary: Jenkins 安装和使用
 
 #### 安装
+方法1：
 
+```bash
+# sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+#sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+# yum install jenkins
+
+```
+
+方法2：
 
 ```bash
 
